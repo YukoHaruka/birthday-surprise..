@@ -789,7 +789,250 @@ h1, h2 {
 //
 // Then replace sunshine with any word you want.
 // ===============================
+</script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise | Special One</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 100%) !important;
+            background-attachment: fixed !important;
+            color: #02457A !important;
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Gate Styles */
+        #gate {
+            position: fixed;
+            inset: 0;
+            background: #0f172a;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #gate.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .slide-container {
+            width: min(1000px, 92vw);
+            min-height: 85vh;
+            background: rgba(255, 255, 255, 0.45) !important;
+            backdrop-filter: blur(15px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.6) !important;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05) !important;
+            border-radius: 40px;
+            margin: 60px auto;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease-out;
+        }
+
+        .slide-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; color: #014f86; }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #00BFFF, #1E90FF);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 35px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px rgba(30, 144, 255, 0.3);
+            margin-top: 20px;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 25px rgba(30, 144, 255, 0.4);
+        }
+
+        .video-wrapper {
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto;
+            border-radius: 25px;
+            overflow: hidden;
+            border: 8px solid white;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            background: #000;
+        }
+
+        video { width: 100%; display: block; }
+
+        .image-card {
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .image-card img { width: 100%; display: block; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        #secretInput {
+            padding: 15px 25px;
+            border-radius: 25px;
+            border: 2px solid #1E90FF;
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            font-size: 1.1rem;
+            width: 280px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; text-align: center; }
+            .slide-container { padding: 40px 20px; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="gate">
+    <div class="badge">Private Surprise 🔒</div>
+    <h2 style="margin-bottom: 30px;">Who's the Birthday Star?</h2>
+    <input type="password" id="secretInput" placeholder="Enter the secret word...">
+    <button class="btn-primary" onclick="checkGate()">Unlock Magic ✨</button>
+    <p id="errorMsg" style="color:#f87171; margin-top:15px; display:none;">Hint: It's "sunshine" 😉</p>
+</div>
+
+<div class="slide-container" id="slide1">
+    <div style="text-align: center;">
+        <div class="badge">For Someone Special</div>
+        <h1 style="font-size: 3.5rem; margin-bottom: 10px;">Happy Birthday! <br> My Favorite Soul</h1>
+        <p style="font-size: 1.3rem; opacity: 0.8;">I made this little digital corner just for you.</p>
+        <button class="btn-primary" onclick="scrollToNext('slide2')">Start the Tour 💙</button>
+    </div>
+</div>
+
+<div class="slide-container" id="slide2">
+    <div style="text-align: center;">
+        <div class="badge">Mood 🎬</div>
+        <h2>A Little Cat to Make You Smile</h2>
+        <div class="video-wrapper">
+            <video id="bdayVid" controls>
+                <source src="bdayvideo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <p style="margin-top: 20px; font-weight: 600;">"It's your birthday today! Everybody say hooray!" 🐾</p>
+        <button class="btn-primary" onclick="scrollToNext('slide3')">Keep Going ✨</button>
+    </div>
+</div>
+
+<div class="slide-container" id="slide3">
+    <div class="grid-2">
+        <div>
+            <h2>Rare & Beautiful</h2>
+            <p style="font-size: 1.1rem; line-height: 1.6;">Blue roses represent the extraordinary and the impossible. They remind me of you because you’re one in a billion.</p>
+            <p style="font-size: 1.1rem; font-style: italic;">May your year be as vibrant as these petals.</p>
+        </div>
+        <div class="image-card">
+            <img src="https://i.ibb.co/1fcgZ0zS/blue-flowers.jpg" alt="Blue Flowers">
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+        <button class="btn-primary" onclick="scrollToNext('slide4')">Almost there...</button>
+    </div>
+</div>
+
+<div class="slide-container" id="slide4" style="background: rgba(224, 242, 254, 0.7) !important;">
+    <div style="text-align: center;">
+        <div class="image-card" style="max-width: 350px; margin: 0 auto 30px;">
+            <img src="https://i.ibb.co/2Y6RQJM0/kitty-wish.jpg" alt="Final Wish">
+        </div>
+        <h2 style="font-size: 2.8rem;">Make a Big Wish! 🕯️</h2>
+        <p style="font-size: 1.4rem; max-width: 700px; margin: 0 auto;">Close your eyes, breathe in, and think of everything you want. You deserve every bit of it.</p>
+        <h3 style="margin-top: 40px; font-size: 2rem;">Happy Birthday, Sunshine! 💙☀️</h3>
+    </div>
+</div>
+
+<script>
+    function checkGate() {
+        const input = document.getElementById('secretInput').value.toLowerCase();
+        const gate = document.getElementById('gate');
+        const error = document.getElementById('errorMsg');
+
+        if (input === 'sunshine') {
+            gate.classList.add('hidden');
+            document.getElementById('slide1').classList.add('visible');
+        } else {
+            error.style.display = 'block';
+            document.getElementById('secretInput').value = '';
+        }
+    }
+
+    function scrollToNext(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.slide-container').forEach(slide => {
+        observer.observe(slide);
+    });
+
+    document.getElementById('secretInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') checkGate();
+    });
 </script>
 
 </body>
 </html>
+
